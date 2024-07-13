@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 
 const UserSchema = mongoose.Schema({
-  fristname: {
+  fistname: {
     type: String,
     required: true,
     trim: true
