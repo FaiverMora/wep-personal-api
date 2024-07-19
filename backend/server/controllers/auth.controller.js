@@ -4,10 +4,12 @@ const jwt = require("../utils/jwt")
 
 function register(req,res){
   const { firstname, lastname, email, password } = req.body;
-  console.log(req.body);
+console.log(req.body);
 
-if(!email) res.status(400).send({msg:"El email es obligatorio"})
-if(!password)res.status(400).send({msg:"Laconraseña esobligatoria"})
+  if(!email) res.status(400).send({msg:"El email es obligatorio"})
+  if(!password)res.status(400).send({msg:"Laconraseña es obligatoria"})
+
+  // console.log("se ha ejecutado el registro")
 
 const user = new User({
   firstname,
@@ -19,13 +21,16 @@ const user = new User({
 });
 
   const salt = bcrypt.genSaltSync(10)
-  const hasnpassword = bcrypt.hashSync(password, salt);
+  const hasnPassword = bcrypt.hashSync(password, salt);
 
-  console.log(password)
-  console.log(hasnpassword)
+  // console.log(password)
+  // console.log(hasnPassword)
 
-  user.password = hasnpassword
-  // console.log (user)
+  user.password = hasnPassword
+
+  console.log (user)
+
+  // res.status(200).send({mg:"funciono perfecto !"})
   user.save((error, userStorage) => {
     if (error) {
       res.status(400).send({msg: "Error al crear el usuario" });
@@ -33,7 +38,7 @@ const user = new User({
       res.status(200).send(userStorage);
     }
   })
-  // res.status(200).send({msg:"Funcion perfecto !"})
+//   // res.status(200).send({msg:"Funcion perfecto !"})
 }
 
 function login(req,res){
@@ -47,34 +52,35 @@ if(!password) res.status(400).send({mgs:"La contraseña es obligatoria"})
     if(error){
       res.status(500).send({msg:" Error del servidor"})
     }else {
+      console.log("password",password)
+      console.log(userStore)
       bcrypt.compare(password, userStore.password, (bcryptError,check)=>{
         if(bcryptError){
           res.status(500).send({msg:"Error del servidor"})
         }else if (!check) {
           res.status(400).send({ msg: "usuario o contraseña incorrecta" });
         } else if (!userStore.active) {
-          res.status(400).send({ msg: "usuario no autorizado o no activo" });
+          res.status(401).send({ msg: "usuario no autorizado o no activo" });
         } else {
-          res.status(200).send({
+        res.status(401).send({
             access: jwt.createAccessToken(userStore),
             refresh: jwt.createRefreshToken(userStore)
-          });
+          })
         }
       })
-      // console.log("password", password)
-      // console.log(userStore)
+//       // console.log("password", password)
+//       // console.log(userStore)
     }
   })
 }
 function refreshAccessToken(req,res){
   const {token} = req.body
-
+  
   if(!token)res.status(400).send({msg:"Error token requerido"})
-
-  const { user_id } = jwt.decoded(token)
-
     
-  User.findOne({_id:user_id},(error,userStorage)=> {
+    const { user_id } = jwt.decoded(token)
+
+  User.findOne({ _id: user_id},(error,userStorage)=> {
     if(error){
       res.status(500).send({msg:"Eror del servidor"})
     }else{
@@ -88,4 +94,4 @@ module.exports = {
   register,
   login,
   refreshAccessToken
-}
+};

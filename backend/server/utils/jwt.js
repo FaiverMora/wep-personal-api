@@ -26,7 +26,7 @@ function createRefreshToken (user){
       exp:expirationToken.getTime()
     }
     return jwt.sign(payload, JWT_SECRET_KEY)
-  }
+}
 
   function decoded(token){
     return jwt.decode(token, JWT_SECRET_KEY, true)

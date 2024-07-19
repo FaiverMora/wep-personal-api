@@ -5,19 +5,19 @@ const bodyParser = require("body-parser")
 
 const app = express()
 
-//importar rutas
+// //importar rutas
 const authRoutes = require("./router/auth.router")
 const userRoutes = require("./router/user.router")
-//configurar body parse
+// //configurar body parse
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(bodyParser.json())
 
-//configurar carpetas static
+// //configurar carpetas static
 app.use(express.static("uploads"))
 
-//configurar Header HTTP - CORS
+// //configurar Header HTTP - CORS
 app.use(cors())
-//configurar Rutas
+// //configurar Rutas
 app.use(`/api/${API_VERSION}`,authRoutes)
 app.use(`/api/${API_VERSION}`, userRoutes)
 

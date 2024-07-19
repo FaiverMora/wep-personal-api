@@ -1,15 +1,15 @@
 const mongoose = require("mongoose")
 
 const UserSchema = mongoose.Schema({
-  fistname: {
+  firstname: {
     type: String,
     required: true,
     trim: true
   },
   lastname: {
     type: String,
-    unique: true,
-    required: true
+    require: true,
+    trim: true
   },
   email: {
     type: String,
@@ -22,7 +22,7 @@ const UserSchema = mongoose.Schema({
   },
   role: String,
   active: Boolean,
-  avatar: String
-})
+  avatar: String,
+});
 
-module.exports = mongoose.model ("User", UserSchema)
+module.exports = mongoose.model("User", UserSchema)
