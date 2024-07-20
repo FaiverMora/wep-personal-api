@@ -1,6 +1,7 @@
 const jwt = require("..//utils/jwt")
 
 function asureAuth(req, res, next){
+
   if(!req.headers.authorization){
       return res.status(403).send({msg:"La peticion no tiene la cabecera de autenticacion"})
 }
@@ -17,7 +18,6 @@ function asureAuth(req, res, next){
 
       if(exp <= currentData){
         return res.status(400).send({msg: "El token ha expirado"})
-
       }
     
     req.user = payload
