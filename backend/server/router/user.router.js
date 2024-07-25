@@ -8,6 +8,6 @@ const api = express.Router()
 
 api.get("/user/me", [md_auth.asureAuth],UserController.getMe);
 api.get("/Users", [md_auth.asureAuth], UserController.getUsers);
-api.post("/user", [md_auth.asureAuth,md_upload ], UserController.createUser);
+api.post("/create", [md_auth.asureAuth, md_upload], UserController.createUser);
 
 module.exports = api

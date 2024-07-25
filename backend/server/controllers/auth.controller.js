@@ -93,5 +93,5 @@ function refreshAccessToken(req,res){
 module.exports = {
   register,
   login,
-  refreshAccessToken
+  refreshAccessToken,
 };
