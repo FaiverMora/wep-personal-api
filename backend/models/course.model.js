@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const mogoosePaginate = require("mongoose-paginate")
+const mogoosePaginate = require("mongoose-paginate");
 
 const CourseSchema = mongoose.Schema({
   title: String,
