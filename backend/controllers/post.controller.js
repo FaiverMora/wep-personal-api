@@ -1,15 +1,15 @@
 const Post = require("../models/post.model");
-const { post } = require("../router/post.router");
+// const { Post } = require("../router/post.router");
 const image = require("../utils/image");
 
 function createPost(req, res) {
-  const post = new Post(req.body);
-  post.created_at = new Date();
+  const Post = new Post(req.body);
+  Post.created_at = new Date();
 
   const imagePath = image.getFilePath(req.files.miniature);
-  post.miniature = imagePath;
+  Post.miniature = imagePath;
 
-  post.save((error, postStored) => {
+  Post.save((error, postStored) => {
     if (error) {
       res.status(400).send({ msg: "Error al crear el post" });
     } else {
@@ -64,9 +64,23 @@ function deletePost(req, res) {
     }
   });
 }
+
+function getPost(req, res) {
+  const { path } = req.params;
+
+  Post.findOne({ path }, (error, postStored) => {
+    if (error) {
+      res.status(400).send({ msg: "Error al eliminar el post" });
+    } else {
+      res.status(200).send({ msg: "post Eliminado" });
+    }
+  });
+}
+
 module.exports = {
   createPost,
   getPosts,
   updatePost,
   deletePost,
+  getPost,
 };
