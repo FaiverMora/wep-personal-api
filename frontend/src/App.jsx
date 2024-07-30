@@ -32,19 +32,31 @@
 //   )
 // }
 
-// export default App
-import React from 'react'
-import { Button } from 'semantic-ui-react'
+// // export default App
+// import React from 'react'
+// import { Button } from 'semantic-ui-react'
+
+// export default function App() {
+//   return (
+//     <div>
+//       <h1>Bienvenidos !!</h1>
+//     <div>
+//         <Button content='Primary' primary />
+//         <Button content='Secondary' secondary />
+//         </div>
+//         </div>
+
+//   );
+// }
+import React from "react";
+import { BrowserRouter } from "react-router-dom";
+import { WebRouter, AdminRouter } from "./router";
 
 export default function App() {
   return (
-    <div>
-      <h1>Bienvenidos !!</h1>
-    <div>
-        <Button content='Primary' primary />
-        <Button content='Secondary' secondary />
-        </div>
-        </div>
-        
-  );
+    <BrowserRouter>
+      <WebRouter />
+      <AdminRouter />
+    </BrowserRouter >
+  )
 }
