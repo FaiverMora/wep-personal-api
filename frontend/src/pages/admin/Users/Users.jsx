@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Users() {
+export function  Users() {
   return (
     <div>
       <h1>Estamos en Users - Admin</h1>
