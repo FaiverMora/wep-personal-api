@@ -2067,6 +2067,11 @@ uri-js@^4.2.2:
   dependencies:
     punycode "^2.1.0"
 
+vite-plugin-sass@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.npmjs.org/vite-plugin-sass/-/vite-plugin-sass-0.1.0.tgz"
+  integrity sha512-gLwvs3ozfDAOZCqs+PepkTd4078m8tfq50IlmTW/OphlWsW95uP7lQ5A3NezfUfTZDTCOA4nFlYnOWRpsKYOqw==
+
 "vite@^4 || ^5", vite@^5.3.4:
   version "5.3.5"
   resolved "https://registry.npmjs.org/vite/-/vite-5.3.5.tgz"
